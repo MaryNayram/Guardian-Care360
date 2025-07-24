@@ -1,8 +1,6 @@
 GuardianCare360
 
 Author: Mary Doh  
-Organisation: E-learning Provider  
-Date Created: 30/03/2024
 
 Introduction
 
@@ -60,7 +58,7 @@ GuardianCare adheres to essential non-functional requirements:
 Installation Instructions
 
 1. Clone the Repository:
-https://github.com/MaryNayram/GuardianCare360.git
+https://github.com/MaryNayram/Guardian-Care360.git
 
 2. Navigate to Project Directory:
       cd GuardianCare
