@@ -37,7 +37,7 @@ jobs:
           coverage: xdebug
 
       - name: Set up Composer dependencies
-        working-directory: ./backend
+        working-directory: ./
         run: composer install --prefer-dist --no-progress --no-suggest
 
       - name: Copy .env
