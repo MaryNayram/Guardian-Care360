@@ -1,0 +1,125 @@
+🛡️ GuardianCare360
+
+Author: Mary Doh
+
+
+📌 Introduction
+
+GuardianCare360 is a web-based application designed to empower healthcare professionals in Ghana with foundational cybersecurity skills. The platform provides interactive cybersecurity training modules that improve awareness and protect sensitive health information from digital threats.
+
+This document outlines how to install, run, and deploy the system using modern DevOps practices, including Docker, GitHub Actions CI/CD, and Azure Web Services.
+
+
+
+🎯 Project Objective
+
+To create a secure and scalable training portal with:
+
+Staff and admin authentication
+Course module viewing and management
+Interactive learning
+CI/CD pipeline with GitHub Actions
+Deployment to Microsoft Azure using Docker
+
+
+🏗️ System Architecture
+
+| Layer        | Technology                 |
+| ------------ | -------------------------- |
+| Frontend     | HTML5, CSS3, JavaScript    |
+| Backend      | PHP 8.2 (Apache)           |
+| Database     | MySQL 8.0                  |
+| DevOps       | Docker, GitHub Actions     |
+| Cloud Deploy | Azure Web App (via Docker) |
+
+
+⚙️ Features & Use Cases
+
+| Use Case ID | Feature                                   | User          |
+| ----------- | ----------------------------------------- | ------------- |
+| UC-1        | Staff registration                        | Staff         |
+| UC-2        | Login and secure access                   | Staff/Admin   |
+| UC-3        | Logout and session termination            | Staff/Admin   |
+| UC-4        | View cybersecurity course modules         | Staff         |
+| UC-5        | Access course content                     | Staff         |
+| UC-6        | Admin create/edit/delete training modules | Administrator |
+
+
+🔐 Non-Functional Requirements
+
+Security: Protection of login credentials, data in transit, and database.
+Performance: Fast page load time, database optimization.
+Scalability: Easily expandable course catalog and user base.
+Availability: Docker-based environment ensures consistency and fast recovery.
+
+
+📦 Installation Guide
+
+ 🚧 Prerequisites
+
+Docker & Docker Compose installed
+Git
+MySQL Workbench or phpMyAdmin (optional for local DB inspection)
+
+
+🐳 Run Locally with Docker
+
+1. Clone the repository
+
+   ```bash
+   git clone https://github.com/MaryNayram/Guardian-Care360.git
+   cd Guardian-Care360
+   ```
+
+2. Set up `.env` file
+
+   ```env
+   DB_HOST=db
+   DB_USER=root
+   DB_PASSWORD=root
+   DB_NAME=guardiancare360
+   ```
+
+3. Run Docker containers
+
+   ```bash
+   docker-compose up --build
+   ```
+
+4. Access the App
+
+    App: [http://localhost:8080](http://localhost:8080)
+    MySQL: Port `3306`
+
+
+
+🗃️ Database Setup
+
+1. Inside MySQL container or external tool, import the schema:
+
+   File: `database/guardiancare360.sql`
+
+2. The MySQL container will auto-create the database using environment variables if needed.
+
+
+ 🚀 CI/CD Deployment (GitHub Actions → Azure)
+
+This project includes a CI/CD pipeline using GitHub Actions:
+
+On every push to `main`:
+
+  * Lint/validate Docker config
+  * Build and push Docker image to Azure Container Registry
+  * Deploy to Azure Web App
+
+See `.github/workflows/ci-cd.yml` for details.
+
+
+
+🔗 Resources
+
+📝 [SRS Document with UML](https://docs.google.com/document/d/1wENthQEVcoz9qFVa4i23SHJcu4GycL2_gQqtlQsStH0/edit?usp=sharing)
+🧠 [PHP `.env` handling with `getenv()`](https://www.php.net/manual/en/function.getenv.php)
+
+
+
