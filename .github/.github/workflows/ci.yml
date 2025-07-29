@@ -1,0 +1,129 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [develop]
+
+jobs:
+  test-backend:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: guardian-care360_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, bcmath, pgsql
+          coverage: xdebug
+
+      - name: Set up Composer dependencies
+        working-directory: ./backend
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Copy .env
+        working-directory: ./backend
+        run: cp .env.example .env
+
+      - name: Generate Laravel App Key
+        working-directory: ./backend
+        run: php artisan key:generate
+
+      - name: Run Laravel Migrations
+        working-directory: ./backend
+        run: php artisan migrate --force
+        env:
+          DB_CONNECTION: pgsql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 5432
+          DB_DATABASE: guardian-care360_test
+          DB_USERNAME: postgres
+          DB_PASSWORD: postgres
+
+      - name: Run PHPUnit Tests
+        working-directory: ./backend
+        run: php artisan test
+        env:
+          DB_CONNECTION: pgsql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 5432
+          DB_DATABASE: guardian-care360_test
+          DB_USERNAME: postgres
+          DB_PASSWORD: postgres
+
+  test-frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: Run frontend linting
+        working-directory: ./frontend
+        run: npm run lint
+
+      - name: Run frontend tests
+        working-directory: ./frontend
+        run: npm test -- --coverage --watchAll=false
+
+      - name: Build frontend
+        working-directory: ./frontend
+        run: npm run build
+
+  code-quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: Install backend dependencies
+        working-directory: ./backend
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run frontend format check
+        working-directory: ./frontend
+        run: npm run format:check
+
+      - name: Run backend format check (optional:using Pint)
+        working-directory: ./backend
+        run: ./vendor/bin/pint --test || true
