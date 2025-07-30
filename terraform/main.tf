@@ -5,7 +5,7 @@ terraform {
       version = "~> 3.0"
     }
     random = {
-      source = "hashicorp/random"
+      source  = "hashicorp/random"
       version = "~> 3.0"
     }
   }
@@ -43,8 +43,8 @@ resource "azurerm_postgresql_flexible_server" "main" {
   resource_group_name    = azurerm_resource_group.main.name
   location               = azurerm_resource_group.main.location
   version                = "13"
-  administrator_login    = "psqladmin"
-  administrator_password = "SuperSecurePassword123!" # Replace securely in real project
+  administrator_login    = var.db_admin_username
+  administrator_password = var.db_admin_password
   storage_mb             = 32768
   sku_name               = "B_Standard_B1ms"
   backup_retention_days  = 7
@@ -69,5 +69,3 @@ resource "azurerm_application_insights" "main" {
   resource_group_name = azurerm_resource_group.main.name
   application_type    = "web"
 }
-
-
