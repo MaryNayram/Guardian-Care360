@@ -70,4 +70,4 @@ resource "azurerm_application_insights" "main" {
   application_type    = "web"
 }
 
-resource
+
