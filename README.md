@@ -1,89 +1,129 @@
-# Guardian-Care360
-
 GuardianCare360
+Author: Mary Doh
+Project: Cybersecurity Training Platform for Healthcare Professionals in Ghana
 
-Author: Mary Doh  
+
 
 Introduction
+GuardianCare360 is a secure, web-based platform built to equip healthcare professionals in Ghana with vital cybersecurity awareness and practical skills. This application provides structured training modules, secure login access, and intuitive admin tools to manage content and staff participation.
 
-Welcome to GuardianCare360, an innovative web-based application designed to provide cybersecurity training specifically tailored for healthcare professionals in Ghana. This README document serves as a comprehensive guide on setting up and running the GuardianCare platform, ensuring a seamless experience for both administrators and staff members.
+This guide walks you through setting up and running the platform locally for testing and demonstration.
 
-Scope
 
-GuardianCare's primary objective is to equip healthcare staff in Ghana with essential cybersecurity skills and knowledge. The system facilitates registration, login, and access to various cybersecurity modules. The platform aims to enhance staff awareness and behaviour towards cybersecurity threats prevalent in the healthcare sector.
+
+Project Scope
+GuardianCare360 is designed to:
+
+Improve healthcare staff awareness of cybersecurity threats.
+Enable self-paced learning through curated modules.
+Provide admin controls for course content management.
+
+The application supports full authentication (registration, login, logout), course module display, and admin content creation — all tailored to the Ghanaian healthcare context.
+
+
 
 System Overview
 
-GuardianCare comprises the following components:
-Frontend: Developed using HTML5, CSS, and JavaScript for an interactive user interface.
-Backend: Powered by PHP to handle registration, login, logout, course access, and other functionalities.
-Database: Utilizes MySQL for data storage and retrieval.
-Localhost Hosting: The PHP backend is hosted on your localhost environment for real-time action and functionality testing.
-Web Server: Supports Apache or any suitable server environment for PHP execution.
+Tech Stack
+Frontend: HTML5, CSS3, JavaScript
+Backend: PHP
+Database: MySQL
+Server Environment: Apache or compatible PHP server
+Local Hosting: localhost (via XAMPP, WAMP, or similar)
+
+
 
 Functional Requirements
 
-GuardianCare's functional requirements are outlined through key use cases:
+UC-1: Register
 
-Register (UC-1)
-   - Staff registration with name, email, password, and organization details.
-   - Post-registration login access.
+ Staff can sign up with name, email, password, and organization.
+Successful registration grants login access.
 
-Login (UC-2)
-   - Staff login with email and password after registration confirmation.
-   - Access to course modules and other functionalities upon successful login.
+UC-2: Login
 
-Logout (UC-3)
-   - Staff logout from the system to end session access.
-   - Redirect to the login page after logout.
+ Staff login using verified credentials.
+ Authenticated users gain access to learning modules.
 
-View Course Modules (UC-4)
-   - Staff view available course modules upon login.
-   - Access to course descriptions and content overview.
+UC-3: Logout
 
-View Course Content (UC-5)
-   - Staff view detailed content of selected course modules.
-   - Access to multimedia content and other functionalities within modules.
+ Users can securely end their session.
+ Redirects back to the login screen.
 
-Create Course Content (UC-6)
-   - Administrator creates and manages course content.
-   - Addition, update, and deletion of course modules.
+UC-4: View Course Modules
+
+ Staff see a list of available cybersecurity modules post-login.
+ Modules include summaries and topic breakdowns.
+
+UC-5: View Course Content
+
+ Access to detailed content (text, video, files) for each module.
+ Interactive navigation within modules.
+
+UC-6: Create Course Content (Admin only)
+
+ Admins can add, update, or delete course modules.
+ Support for multimedia learning materials.
+
+
 
 Non-Functional Requirements
+Security: Password hashing, session control, secure data access
+Performance: Fast response time and low load latency
+Scalability: Can accommodate future module expansion and more users
+Availability: High uptime and local testing support
 
-GuardianCare adheres to essential non-functional requirements:
-- Security: Protection of staff data, course content, and system integrity.
-- Performance: Responsive service across locations and user loads.
-- Scalability: Ability to accommodate growth and new content.
-- Availability: Minimal downtime and robust disaster recovery measures.
 
-Installation Instructions
 
-1. Clone the Repository:
-https://github.com/MaryNayram/Guardian-Care360.git
+Installation and Setup Instructions
 
-2. Navigate to Project Directory:
-      cd GuardianCare
+1. Clone the Repository
+   git clone [https://github.com/MaryNayram/Guardian-Care360.git](https://github.com/MaryNayram/Guardian-Care360.git)
 
-  3. Install Dependencies:
-     npm install
-   
-4. Set Up Database:
-   - Create MySQL database named `guardiancare360` or whatever you please.
-   - Import database schema from `database/guardiancare360.sql`.
+2. Navigate to the Project Folder
+   cd Guardian-Care360
 
-5. Configure Environment Variables:
-   - Create `.env` file in project root.
-   - Add required environment variables (e.g., DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE).
+3. Install Dependencies (If any via NPM or Composer)
+   npm install
+   or composer install (if needed)
 
-6. Start the Application:
-   - Ensure Apache server and PHP are running.
-   - Access `http://localhost/GuardianCare360` in your web browser.
+4. Set Up the Database
+
+* Create a new MySQL database (e.g., guardiancare360)
+* Import the schema from:
+  database/guardiancare360.sql
+
+5. Configure Environment Variables
+   Create a .env file in the project root:
+   DB\_HOST=localhost
+   DB\_USER=root
+   DB\_PASSWORD=yourpassword
+   DB\_DATABASE=guardiancare360
+
+6. Start the Application
+
+* Ensure Apache and PHP are running (via XAMPP, WAMP, etc.)
+* Visit:
+  [http://localhost/Guardian-Care360](http://localhost/Guardian-Care360)
+
+
 
 Conclusion
-GuardianCare revolutionizes cybersecurity training for healthcare professionals. Follow the instructions above to set up the platform seamlessly and empower your staff with essential cybersecurity skills.
-
-This enhanced README file emphasizes the frontend-backend architecture using HTML5, CSS, JavaScript, and PHP technologies, along with instructions for localhost hosting, ensuring a convincing and informative guide for users and administrators.
+GuardianCare360 is more than a training tool — it's a digital shield for healthcare professionals in an age of growing cyber threats. With interactive modules, role-based access, and local-first hosting, the platform empowers Ghana’s health sector with real-time cybersecurity literacy.
 
 
-PS: For more contextual knowledge of the project, follow this link to the SRS document with UML diagrams and peruse to have a better unerstanding: https://docs.google.com/document/d/1wENthQEVcoz9qFVa4i23SHJcu4GycL2_gQqtlQsStH0/edit?usp=sharing
+
+Additional Documentation
+For deeper context, including SRS documentation and UML diagrams, visit the official project doc:
+GuardianCare360 SRS and Diagrams
+[https://docs.google.com/document/d/1wENthQEVcoz9qFVa4i23SHJcu4GycL2\_gQqtlQsStH0/edit?usp=sharing](https://docs.google.com/document/d/1wENthQEVcoz9qFVa4i23SHJcu4GycL2_gQqtlQsStH0/edit?usp=sharing)
+
+
+Contact
+Have questions or suggestions?
+Reach out to the author: Mary Doh
+GitHub: [https://github.com/MaryNayram](https://github.com/MaryNayram)
+
+
+
+Let me know if you want this version as a downloadable `.md` file or copied into a Google Doc for submission.
