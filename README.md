@@ -118,12 +118,3 @@ For deeper context, including SRS documentation and UML diagrams, visit the offi
 GuardianCare360 SRS and Diagrams
 [https://docs.google.com/document/d/1wENthQEVcoz9qFVa4i23SHJcu4GycL2\_gQqtlQsStH0/edit?usp=sharing](https://docs.google.com/document/d/1wENthQEVcoz9qFVa4i23SHJcu4GycL2_gQqtlQsStH0/edit?usp=sharing)
 
-
-Contact
-Have questions or suggestions?
-Reach out to the author: Mary Doh
-GitHub: [https://github.com/MaryNayram](https://github.com/MaryNayram)
-
-
-
-Let me know if you want this version as a downloadable `.md` file or copied into a Google Doc for submission.
